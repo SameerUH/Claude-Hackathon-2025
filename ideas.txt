@@ -10,3 +10,6 @@
 --- Possibly get Claude to generate fake data for the grades/experience/behaviour.
 
 Python:
+
+TO-DO:
+xxx Made a python file that generates JSON file with test data.
