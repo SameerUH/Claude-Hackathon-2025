@@ -1,0 +1,142 @@
+[
+  {
+    "student_id": "STU1000",
+    "name": "Student_1",
+    "subject": "Physics",
+    "year": 2,
+    "grades": {
+      "Electromagnetism": 71,
+      "Quantum Physics": 49,
+      "Thermodynamics": 42,
+      "Optics": 48
+    },
+    "average_grade": 52.5,
+    "transferrable_skills": {},
+    "behavior_pattern": "Improving",
+    "engagement": {
+      "attendance_rate": 74,
+      "assignment_submission_rate": 100,
+      "participation_score": 89,
+      "last_login": "2025-11-24T12:31:34.662679"
+    }
+  },
+  {
+    "student_id": "STU1001",
+    "name": "Student_2",
+    "subject": "Computer Science",
+    "year": 2,
+    "grades": {
+      "Databases": 80,
+      "Web Development": 83,
+      "Data Structures": 45
+    },
+    "average_grade": 69.33,
+    "transferrable_skills": {
+      "User Experience Design": 59,
+      "Query Optimization": 45,
+      "System Design": 55,
+      "Memory Management": 59,
+      "Backend Skills": 52,
+      "Data Modeling": 62,
+      "Frontend Skills": 59,
+      "Algorithm Design": 44,
+      "Analytical Thinking": 60
+    },
+    "behavior_pattern": "Irregular",
+    "engagement": {
+      "attendance_rate": 72,
+      "assignment_submission_rate": 82,
+      "participation_score": 76,
+      "last_login": "2025-11-27T12:31:34.662752"
+    }
+  },
+  {
+    "student_id": "STU1002",
+    "name": "Student_3",
+    "subject": "Engineering",
+    "year": 1,
+    "grades": {
+      "Circuits": 95,
+      "Materials": 81,
+      "Design": 73,
+      "Mechanics": 93
+    },
+    "average_grade": 85.5,
+    "transferrable_skills": {
+      "Physics Principles": 77,
+      "Problem Solving": 73,
+      "Mathematical Modeling": 75
+    },
+    "behavior_pattern": "Excellent",
+    "engagement": {
+      "attendance_rate": 80,
+      "assignment_submission_rate": 84,
+      "participation_score": 66,
+      "last_login": "2025-11-29T12:31:34.662773"
+    }
+  },
+  {
+    "student_id": "STU1003",
+    "name": "Student_4",
+    "subject": "Computer Science",
+    "year": 2,
+    "grades": {
+      "Databases": 55,
+      "Data Structures": 74,
+      "Algorithms": 47,
+      "Programming": 92,
+      "Web Development": 76
+    },
+    "average_grade": 68.8,
+    "transferrable_skills": {
+      "User Experience Design": 61,
+      "Optimization": 48,
+      "Memory Management": 48,
+      "Query Optimization": 48,
+      "System Design": 52,
+      "Complexity Analysis": 57,
+      "Code Optimization": 42,
+      "Data Modeling": 56,
+      "Backend Skills": 54,
+      "Frontend Skills": 55,
+      "Algorithm Design": 58,
+      "Logical Thinking": 57,
+      "Analytical Thinking": 55,
+      "Problem Solving": 61,
+      "Debugging": 53
+    },
+    "behavior_pattern": "Irregular",
+    "engagement": {
+      "attendance_rate": 85,
+      "assignment_submission_rate": 80,
+      "participation_score": 95,
+      "last_login": "2025-11-29T12:31:34.662803"
+    }
+  },
+  {
+    "student_id": "STU1004",
+    "name": "Student_5",
+    "subject": "Physics",
+    "year": 1,
+    "grades": {
+      "Thermodynamics": 56,
+      "Optics": 62,
+      "Electromagnetism": 65,
+      "Mechanics": 56,
+      "Quantum Physics": 54
+    },
+    "average_grade": 58.6,
+    "transferrable_skills": {
+      "Physics Principles": 30,
+      "Problem Solving": 41,
+      "Mathematical Modeling": 25
+    },
+    "behavior_pattern": "Irregular",
+    "engagement": {
+      "attendance_rate": 87,
+      "assignment_submission_rate": 87,
+      "participation_score": 95,
+      "last_login": "2025-11-25T12:31:34.662820"
+    }
+  }
+]
