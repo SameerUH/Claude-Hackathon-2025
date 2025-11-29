@@ -1,0 +1,10 @@
+--- Use AI to transform university learning into personalised, accessible experiences.
+--- Master their subject and recognise the transferrable skills, they're developing for future careers.
+
+--- User behaviour detection.
+--- Access to grades.
+--- A.I. that takes in skills via grades and outputs potential ideas for the student to make.
+--- Possibly develop a roadmap for progression.
+
+--- Try and find a language we can all do.
+--- Possibly get Claude to generate fake data for the grades/experience/behaviour.
