@@ -699,7 +699,7 @@ Based on {student.get('study_hours', 15)} hours/week:
             context = self.build_student_context(student)
             material_list = "\n".join([f"- {m['name']}" for m in materials if not m.get('done')])
             
-            prompt = f"""Create a personalized weekly study plan for this student.
+            prompt = f"""Create a personalized weekly study plan for this student. 
 
 {context}
 
@@ -720,10 +720,154 @@ Format as a simple, clear weekly schedule."""
                 messages=[{"role": "user", "content": prompt}]
             )
             return response.content[0].text
+    
+    
             
         except Exception as e:
             return self._mock_study_plan(student)
-    
+        
+    # ADD THIS NEW METHOD HERE:
+    def _mock_project_ideas(self, student, material):
+        subject = student['subject']
+        
+        # Add some variety based on subject
+        project_ideas = {
+            "Computer Science": [
+                ("Algorithm Visualizer", "Build an interactive web tool that visualizes sorting algorithms", "JavaScript, Data Structures, UI Design"),
+                ("API Integration Project", "Create an app that pulls data from public APIs and displays it creatively", "REST APIs, Data Processing, Frontend Development"),
+                ("Chrome Extension", "Build a productivity extension for Chrome browser", "JavaScript, Browser APIs, Problem Solving")
+            ],
+            "Mathematics": [
+                ("Math Problem Generator", "Create a tool that generates practice problems with solutions", "Python, Problem Design, Teaching"),
+                ("Data Visualization Dashboard", "Build interactive charts showing mathematical concepts", "Statistics, Data Viz, Communication"),
+                ("Calculator App", "Design a specialized calculator for specific math domains", "Programming, Math Logic, UX Design")
+            ],
+            "Engineering": [
+                ("CAD Model Portfolio", "Create 3D models of mechanical designs", "CAD Software, Design Thinking, Documentation"),
+                ("Arduino Project", "Build a working prototype using Arduino/Raspberry Pi", "Electronics, Programming, Problem Solving"),
+                ("Engineering Blog", "Write technical articles explaining engineering concepts", "Technical Writing, Research, Communication")
+            ]
+        }
+        
+        # Get subject-specific projects or default
+        projects = project_ideas.get(subject, [
+            ("Portfolio Website", "Showcase your academic work and projects", "Web Dev, Design, Personal Branding"),
+            ("Study Tracker", "Track and analyze your learning patterns", "Data Analysis, Self-Monitoring, Automation"),
+            ("Tutorial Series", "Create tutorials teaching concepts from your material", "Communication, Teaching, Content Creation")
+        ])
+        
+        import random
+        selected = random.sample(projects, min(3, len(projects)))
+        
+        output = f"""# 🚀 Project Ideas Based on "{material['name']}"
+
+    **Note:** These are sample ideas. Connect your API key to get personalized projects based on your PDF content!
+
+    ---
+    """
+        
+        for i, (title, desc, skills) in enumerate(selected, 1):
+            output += f"""
+    ## Project {i}: {title}
+
+    **What You'll Build:**
+    {desc}
+
+    **Skills You'll Gain:**
+    {skills}
+
+    **Time Estimate:** 2-4 weeks ({student.get('study_hours', 15)}-20 hours total)
+
+    **Difficulty:** Intermediate
+
+    **Why This Matters:**
+    Demonstrates hands-on application of {subject} concepts and builds your portfolio.
+
+    **Getting Started:**
+    1. Research existing examples in this space
+    2. Sketch out your approach and required features
+    3. Start with a minimum viable version
+
+    ---
+    """
+        
+        output += f"""
+    ## 💡 Want PDF-Specific Projects?
+
+    These are generic examples. To get project ideas tailored to "{material['name']}" content:
+    1. Add your Anthropic API key to `.env` file
+    2. Add API credits at https://console.anthropic.com
+    3. Click "Generate New Ideas" again
+
+    Your projects will be customized based on what's actually in your PDF!
+
+    ---
+    💪 Current goal: {student.get('goal', 'Success!')}
+    """
+        
+        return output
+        
+    def generate_project_ideas(self, student, material):
+        """Generate real-world project ideas based on material"""
+        if self.use_mock:
+            return self._mock_project_ideas(student, material)
+        
+        try:
+            context = self.build_student_context(student)
+            
+            # If we have the PDF content, use it. Otherwise use lesson summary
+            prompt_content = []
+            
+            # Check if we stored the PDF content
+            if 'pdf_content' in material:
+                pdf_base64 = material['pdf_content']
+                prompt_content.append({
+                    "type": "document", 
+                    "source": {
+                        "type": "base64", 
+                        "media_type": "application/pdf", 
+                        "data": pdf_base64
+                    }
+                })
+            
+            prompt_text = f"""Generate 3-5 creative, real-world project ideas based on this learning material that the student can build outside of university.
+
+    {context}
+
+    **Learning Material:** {material['name']}
+
+    Generate project ideas that:
+    1. Apply concepts from the PDF material to real-world problems
+    2. Match the student's skill level and available time ({student.get('study_hours', 15)} hours/week)
+    3. Build transferable skills relevant to {student['subject']}
+    4. Can be completed in 2-6 weeks
+    5. Could be portfolio pieces or used for job applications
+    6. Consider their goal: "{student.get('goal', 'career development')}"
+    7. Are DIFFERENT each time - provide fresh, creative ideas
+
+    For each project idea, provide:
+    - **Project Title**: Clear, engaging name
+    - **What You'll Build**: 2-3 sentence description
+    - **Skills You'll Gain**: List of transferable skills
+    - **Time Estimate**: Realistic timeframe
+    - **Difficulty**: Beginner/Intermediate/Advanced
+    - **Why This Matters**: How it relates to career/portfolio
+    - **Getting Started**: First 3 concrete steps
+
+    Make the projects exciting, achievable, and career-relevant! Think creatively and provide diverse project types."""
+
+            prompt_content.append({"type": "text", "text": prompt_text})
+            
+            response = self.client.messages.create(
+                model=self.model,
+                max_tokens=2500,
+                messages=[{"role": "user", "content": prompt_content}]
+            )
+            return response.content[0].text
+            
+        except Exception as e:
+            return self._mock_project_ideas(student, material)
+        
     def _mock_lesson(self, student, file_name):
         return f"""# 📚 Learning: {file_name}
 
@@ -1336,28 +1480,10 @@ else:
                         user['materials'].append({
                             'name': uploaded.name,
                             'lesson': lesson,
+                            'pdf_content': base64.b64encode(pdf_bytes).decode('utf-8'),  # ← ADD THIS LINE
                             'date': datetime.now().isoformat(),
                             'done': False
                         })
-                        platform.save_user(user)
-                        st.session_state.user = user
-                        
-                        st.success("🎉 Your lesson is ready!")
-                        
-                        # Audio option
-                        speak_button(lesson[:500], "new_lesson", "🔊 Listen to Lesson")
-                        
-                        # Display lesson
-                        st.markdown("---")
-                        st.markdown(lesson)
-                        
-                        # Download
-                        st.download_button(
-                            "💾 Download Lesson",
-                            lesson,
-                            f"{uploaded.name}_lesson.md",
-                            use_container_width=True
-                        )
     
     # ===== MATERIALS TAB =====
     with tab2:
@@ -1382,12 +1508,12 @@ else:
             for idx, mat in enumerate(filtered):
                 is_done = mat.get('done', False)
                 status_icon = "✅" if is_done else "📖"
-                status_class = "completed" if is_done else ""
                 
                 with st.expander(f"{status_icon} {mat['name']}", expanded=False):
                     st.caption(f"Uploaded: {mat['date'][:10]}")
                     
-                    col1, col2, col3 = st.columns(3)
+                    # ADD 4 COLUMNS INSTEAD OF 3
+                    col1, col2, col3, col4 = st.columns(4)
                     with col1:
                         if st.button("🔊 Listen", key=f"audio_{idx}"):
                             audio = text_to_speech(mat['lesson'][:1000])
@@ -1401,6 +1527,54 @@ else:
                             key=f"dl_{idx}"
                         )
                     with col3:
+                    # ADD THIS NEW BUTTON
+                        if st.button("🚀 Project Ideas", key=f"btn_projects_{idx}"):
+                            with st.spinner("Generating fresh project ideas based on your material..."):
+                                projects = platform.generate_project_ideas(user, mat)
+                                st.session_state[f'projects_{idx}'] = projects
+                                # Force a unique timestamp to ensure fresh generation
+                                st.session_state[f'projects_timestamp_{idx}'] = datetime.now().isoformat()
+                                st.rerun()
+
+                # SHOW PROJECTS IF GENERATED (moved outside col4)
+                if f'projects_{idx}' in st.session_state:
+                    st.markdown("---")
+                    st.markdown("### 🚀 Real-World Project Ideas")
+                    
+                    # Get the projects content
+                    projects_content = st.session_state[f'projects_{idx}']
+                    
+                    # Show when it was generated
+                    if f'projects_timestamp_{idx}' in st.session_state:
+                        timestamp = st.session_state[f'projects_timestamp_{idx}']
+                        st.caption(f"Generated: {timestamp[:19].replace('T', ' ')}")
+                    
+                    # Display the projects
+                    st.markdown(projects_content)
+                    
+                    col_audio, col_download, col_refresh = st.columns(3)
+                    with col_audio:
+                        if st.button("🔊 Listen to Projects", key=f"listen_proj_{idx}"):
+                            audio = text_to_speech(projects_content[:500])
+                            if audio:
+                                st.audio(audio, format='audio/mp3', autoplay=True)
+                    with col_download:
+                        # Make sure projects_content is a string before downloading
+                        if isinstance(projects_content, str):
+                            st.download_button(
+                                "💾 Download Project Ideas",
+                                projects_content,
+                                f"projects_{mat['name']}.md",
+                                key=f"dl_proj_{idx}"
+                            )
+                    with col_refresh:
+                        if st.button("🔄 Generate New Ideas", key=f"refresh_proj_{idx}"):
+                            with st.spinner("Generating fresh project ideas..."):
+                                projects = platform.generate_project_ideas(user, mat)
+                                st.session_state[f'projects_{idx}'] = projects
+                                st.session_state[f'projects_timestamp_{idx}'] = datetime.now().isoformat()
+                                st.rerun()
+                    with col4:
                         if not is_done:
                             if st.button("✅ Mark Complete", key=f"done_{idx}"):
                                 mat['done'] = True
@@ -1408,8 +1582,7 @@ else:
                                 platform.save_user(user)
                                 st.success("Marked complete!")
                                 st.rerun()
-                    
-                    st.markdown("---")
+                    st.markdown("### 📖 Your Lesson")
                     st.markdown(mat['lesson'])
     
     # ===== STUDY PLAN TAB =====

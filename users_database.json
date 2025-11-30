@@ -44,5 +44,51 @@
     "completed": 0,
     "study_streak": 0,
     "last_study": null
+  },
+  "STU20250002": {
+    "name": "Sameer Haq",
+    "email": "sameerhaq1@1",
+    "age": 20,
+    "year": 3,
+    "subject": "Computer Science",
+    "learning_style": "\ud83d\udc41\ufe0f Visual - I learn best with pictures, diagrams, and videos",
+    "study_time": "\u2600\ufe0f Mid Morning",
+    "study_hours": 15,
+    "anxiety": 5,
+    "stress": 5,
+    "motivation": 8,
+    "depression": 5,
+    "sleep_hours": 6,
+    "sleep_quality": "Poor",
+    "challenge": {
+      "has_challenge": false
+    },
+    "goal": "Get a job, have a better career",
+    "barriers": [
+      "Procrastination",
+      "Health issues",
+      "Memory"
+    ],
+    "accessibility": [],
+    "additional_info": "",
+    "student_id": "STU20250002",
+    "created": "2025-11-30T11:24:11.797686",
+    "materials": [
+      {
+        "name": "Monday Lectorial Week10.pdf",
+        "lesson": "# \ud83d\udcda Learning: Monday Lectorial Week10.pdf\n\n## \ud83c\udfaf What You'll Learn\n\nThis lesson covers key concepts from your Computer Science material.\nWe'll go step by step, making everything clear and manageable.\n\n## \ud83d\udca1 Why This Matters\n\nThis connects directly to your goal: \"Get a job, have a better career\"\nUnderstanding this will help you build a strong foundation.\n\n## \ud83d\udcd6 Key Concepts\n\n### Concept 1: The Foundation\n\n**The Simple Version:**\nEvery topic has a starting point. This is yours.\nThink of it as learning the alphabet before reading books.\n\n**Picture This:**\nImagine building a house. You need the foundation first.\nWithout it, nothing else can stand properly.\n\n**Try It:**\nQuestion: What's the first step in learning any new topic?\nAnswer: Understanding the basic building blocks!\n\n### Concept 2: Putting It Together\n\n**The Simple Version:**\nNow we combine what we learned.\nThis is where things start to click.\n\n**Picture This:**\nLike cooking a recipe - you gather ingredients, then combine them.\nEach step builds on the last.\n\n**Try It:**\nQuestion: How do basics help with advanced topics?\nAnswer: They give you the tools to understand bigger ideas!\n\n### Concept 3: Real-World Application\n\n**The Simple Version:**\nKnowledge is most powerful when we use it.\nLet's see how this applies to real situations.\n\n**Picture This:**\nYou learned to ride a bike, now you can go anywhere.\nSkills become freedom.\n\n**Try It:**\nQuestion: Why practice applying what you learn?\nAnswer: It makes the knowledge stick and become useful!\n\n## \u2705 Quick Review\n\n- Start with the basics - they're your foundation\n- Build up step by step - don't rush\n- Apply what you learn - that's when it clicks\n\n## \ud83d\ude80 Your Action Plan\n\nBased on your schedule:\n- **Today (15 min):** Review the key concepts above\n- **This Week:** Try explaining one concept to someone else\n- **Remember:** \"Get a job, have a better career\"\n\n---\n\ud83d\udc99 Great work, Sameer Haq! Every step forward counts.\n",
+        "date": "2025-11-30T11:32:12.515561",
+        "done": false
+      },
+      {
+        "name": "7.4.2 Lab - Implement DHCPv4.pdf",
+        "lesson": "# \ud83d\udcda Learning: 7.4.2 Lab - Implement DHCPv4.pdf\n\n## \ud83c\udfaf What You'll Learn\n\nThis lesson covers key concepts from your Computer Science material.\nWe'll go step by step, making everything clear and manageable.\n\n## \ud83d\udca1 Why This Matters\n\nThis connects directly to your goal: \"Get a job, have a better career\"\nUnderstanding this will help you build a strong foundation.\n\n## \ud83d\udcd6 Key Concepts\n\n### Concept 1: The Foundation\n\n**The Simple Version:**\nEvery topic has a starting point. This is yours.\nThink of it as learning the alphabet before reading books.\n\n**Picture This:**\nImagine building a house. You need the foundation first.\nWithout it, nothing else can stand properly.\n\n**Try It:**\nQuestion: What's the first step in learning any new topic?\nAnswer: Understanding the basic building blocks!\n\n### Concept 2: Putting It Together\n\n**The Simple Version:**\nNow we combine what we learned.\nThis is where things start to click.\n\n**Picture This:**\nLike cooking a recipe - you gather ingredients, then combine them.\nEach step builds on the last.\n\n**Try It:**\nQuestion: How do basics help with advanced topics?\nAnswer: They give you the tools to understand bigger ideas!\n\n### Concept 3: Real-World Application\n\n**The Simple Version:**\nKnowledge is most powerful when we use it.\nLet's see how this applies to real situations.\n\n**Picture This:**\nYou learned to ride a bike, now you can go anywhere.\nSkills become freedom.\n\n**Try It:**\nQuestion: Why practice applying what you learn?\nAnswer: It makes the knowledge stick and become useful!\n\n## \u2705 Quick Review\n\n- Start with the basics - they're your foundation\n- Build up step by step - don't rush\n- Apply what you learn - that's when it clicks\n\n## \ud83d\ude80 Your Action Plan\n\nBased on your schedule:\n- **Today (15 min):** Review the key concepts above\n- **This Week:** Try explaining one concept to someone else\n- **Remember:** \"Get a job, have a better career\"\n\n---\n\ud83d\udc99 Great work, Sameer Haq! Every step forward counts.\n",
+        "date": "2025-11-30T12:39:08.434589",
+        "done": false
+      }
+    ],
+    "completed": 0,
+    "study_streak": 0,
+    "last_study": null
   }
 }
